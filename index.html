@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>鮮乳團購登記</title>
+    <style>
+        body { font-family: "Microsoft JhengHei", sans-serif; max-width: 450px; margin: 40px auto; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background-color: #f9f9f9; }
+        h2 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #34495e; }
+        input { width: 100%; padding: 10px; border: 1px solid #bdc3c7; border-radius: 6px; box-sizing: border-box; }
+        .price-tag { color: #e74c3c; font-size: 0.9em; margin-top: 5px; }
+        button { background-color: #3498db; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        button:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+
+    <h2>🥛 鮮乳小農團購登記</h2>
+    
+    <form id="milkOrder">
+        <div class="form-group">
+            <label for="userName">聯絡姓名</label>
+            <input type="text" id="userName" placeholder="請輸入您的稱呼" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">手機號碼</label>
+            <input type="tel" id="phone" placeholder="以便到貨通知" required>
+        </div>
+
+        <div class="form-group">
+            <label for="num">訂購數量 (936ml/瓶)</label>
+            <input type="number" id="num" min="1" value="1" oninput="calculateTotal()">
+            <div class="price-tag">單價：$80 / 瓶</div>
+        </div>
+
+        <div style="text-align: right; margin-bottom: 20px; font-weight: bold;">
+            預估總金額：$<span id="total">100</span>
+        </div>
+
+        <button type="submit">確認提交訂單</button>
+    </form>
+
+    <script>
+        function calculateTotal() {
+            const price = 100; // 這裡改單價
+            const qty = document.getElementById('num').value;
+            document.getElementById('total').innerText = price * qty;
+        }
+
+        document.getElementById('milkOrder').onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('userName').value;
+            const qty = document.getElementById('num').value;
+            alert(`感謝 ${name}！已收到您訂購 ${qty} 瓶鮮乳的請求。`);
+        };
+    </script>
+</body>
+</html>
