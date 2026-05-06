@@ -58,3 +58,9 @@
     </script>
 </body>
 </html>
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = JSON.parse(e.postData.contents);
+  sheet.appendRow([new Date(), data.name, data.quantity]); // https://docs.google.com/forms/d/e/1FAIpQLSdZ-e9P7P0hPGvtpNaS7OUXLmHA7qChdqkoE_3WH8o57fHQqw/viewform?usp=header
+  return ContentService.createTextOutput("成功");
+}
